@@ -13,7 +13,7 @@ sia = SentimentIntensityAnalyzer()
 
 @app.route("/chat/create",methods=["POST"])
 @errorHandler
-def createChat():
+def p4():
     _json=request.json
     chat_name=_json["chat_name"]
 
@@ -32,9 +32,9 @@ def createChat():
 # Add user to the chat
 
 
-@app.route("/chat/adduser/<chat_id>/<username_id>")
+@app.route("/chat/adduser/p/<chat_id>/<username_id>")
 @errorHandler
-def adduser(chat_id,username_id):
+def p5(chat_id,username_id):
     query=collection.find_one({ "_id":ObjectId(chat_id),"users":username_id})
     if query:
         raise APIError("username already exists in chat")
@@ -52,9 +52,9 @@ def adduser(chat_id,username_id):
 # Add message by username to the chat
 
 
-@app.route("/chat/addmessage/<chat_id>/<username_id>",methods=["PATCH"])
+@app.route("/chat/addmessage/p/<chat_id>/<username_id>",methods=["PATCH"])
 @errorHandler
-def addMessage(chat_id,username_id):
+def p1(chat_id,username_id):
     _chat_id=chat_id
     _username_id=username_id
     _json=request.json
@@ -66,7 +66,8 @@ def addMessage(chat_id,username_id):
         raise APIError("username doesn´t exist in chat")
 
     else:
-
+        
+        updateusername=collection.update({ "_id":ObjectId(username_id) },{"$push":{"messages":_text}})
         updatemessage=collection.update({ "_id":ObjectId(chat_id) },{"$push":{"messages":_text}})
         resp=jsonify("message added successfully to the chat") 
         resp.status_code=200
@@ -76,9 +77,9 @@ def addMessage(chat_id,username_id):
 
 # Get list of messages in a chat
 
-@app.route("/chat/<chat_id>/list")
+@app.route("/chat/p/<chat_id>/list")
 @errorHandler
-def getlist(chat_id):
+def p2(chat_id):
     query=list(collection.find({ "_id":ObjectId(chat_id)},{"messages":1}))
     if len(query)==0:
         raise APIError("list if empty")
@@ -88,9 +89,9 @@ def getlist(chat_id):
 
 # Sentiment analysis from a chat
 
-@app.route("/chat/<chat_id>/sentiment")
+@app.route("/chat/p/<chat_id>/sentiment")
 @errorHandler
-def getsentiments(chat_id):
+def p3(chat_id):
     query=list(collection.find({ "_id":ObjectId(chat_id)},{"messages":1}))
     if len(query)==0:
         raise APIError("list if empty")
@@ -99,15 +100,3 @@ def getsentiments(chat_id):
         conclusion=sia.polarity_scores(e)
     
     return dumps(conclusion)
-
-
-
-
-
-
-
-
-
-
-
-

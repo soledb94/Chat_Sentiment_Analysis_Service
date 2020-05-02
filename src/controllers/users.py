@@ -1,22 +1,43 @@
 from src.app import app
-from pymongo import MongoClient
-from src.config import DBURL
+from src.config import *
 from bson.json_util import dumps
 import re
 import json
 from src.helpers.errorHandler import *
 from bson.objectid import ObjectId
+from flask import request,jsonify
 
 
+#user creation
 
-@app.route("/users/create/<username>")
+@app.route("/users/create",methods=["POST"])
 @errorHandler
-def createUsername(username):
-#  query=collection.find_one({"username":username})
-#  print(query)
-#  if len(list(query))>0:
-#    raise APIError("username already exists")
-#  else:
-    user={"username":username}
-    newuser=collection.insert_one(user).inserted_id
-    return dumps(newuser)
+def createUsername():
+    _json=request.json
+    _name=_json["name"]
+    
+    query=collection.find_one({"name":_name})
+    if query:
+        raise APIError("username already exists")
+
+    else:
+        id=collection.insert_one({"name":_name}) 
+        resp=jsonify("user added successfuly") 
+
+        return resp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

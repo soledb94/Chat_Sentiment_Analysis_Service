@@ -85,3 +85,30 @@
 #        raise Error404("company not found")
 #    print("OK")
 ##    return dumps(company)
+
+
+
+
+
+#@app.route("/users/create/<username>")
+#@errorHandler
+#def createUsername(username):
+#  query=collection.find_one({"username":username})
+#  print(query)
+#  if len(list(query))>0:
+#    raise APIError("username already exists")
+#  else:
+#    user={"username":username}
+#    newuser=collection.insert_one(user).inserted_id
+#    return dumps(newuser)
+
+
+
+
+ # query=collection.find_one({"chat_name":chatname},{"_id":0})
+ # if len(list(query))>0:
+ #   raise APIError("chat name already exists")
+ # else:
+  #data={"chat_name":chatname,"messages":[],"users":[]}
+  #newchat=collection.insert_one(data)
+  #return dumps(newchat.inserted_id)
