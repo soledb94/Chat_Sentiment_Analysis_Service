@@ -27,6 +27,17 @@ def createUsername():
         return resp
 
 
+#user recommendation
+
+
+@app.route("/user/<user_id>/recommend")
+@errorHandler
+def getrecommendation(user_id):
+    query=list(collection.find({ "_id":ObjectId(user_id)},{"messages":1}))
+    if len(query)==0:
+        raise APIError("user doesnt exists")
+
+
 
 
 

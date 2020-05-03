@@ -93,7 +93,7 @@ def getlist(chat_id):
 def getsentiments(chat_id):
     query=list(collection.find({ "_id":ObjectId(chat_id)},{"messages":1}))
     if len(query)==0:
-        raise APIError("list if empty")
+        raise APIError("chat is empty")
     
     for e in query[0]["messages"]:
         conclusion=sia.polarity_scores(e)
