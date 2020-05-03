@@ -2,4 +2,4 @@ __pycache__
 .env
 .ipynb_checkpoints
 bash
-syncDb
+syncDb.sh

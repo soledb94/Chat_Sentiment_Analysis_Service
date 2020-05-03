@@ -11,7 +11,7 @@ Public API for a chat sentiment analysis => https://....herokuapp.com/
 | GET         	| /chat/adduser/<chat_id>/<username_id> 	| Adding users to the chat
 | PATCH        	| /chat/addmessage/<chat_id>/<username_id>	| Adding message by user to the chat    |
 | GET         	| /chat/<chat_id>/list	| Getting a list of chat messages for a chat ID 	   |
-| GET         	| /chat/<chat_id>/sentiment	| Sentiment analysis for a chat baed in the chat messages   |   
+| GET         	| /chat/<chat_id>/sentiment	| Sentiment analysis for a chat based in the chat messages   |   
 
 
 ## Users endpoints
@@ -21,4 +21,4 @@ Public API for a chat sentiment analysis => https://....herokuapp.com/
 | HTTP Method 	| URI path      	| Description                                    	| 
 |-------------	|---------------	|------------------------------------------------	|
 | POST       	| /users/create           	| Adding user to the DB |    	
-| GET         	| /user/<user_id>/recommend 	| Recommending users to chat according to users simmilarities| 
+| GET         	| /user/<user_id>/recommend 	| Recommending users to have a chat according to users simmilarities| 
