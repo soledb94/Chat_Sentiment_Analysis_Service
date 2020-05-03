@@ -1,5 +1,7 @@
 from src.app import app
 import nltk
+import nltk.data
+nltk.download('vader_lexicon')
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from src.config import *
 from bson.json_util import dumps
@@ -69,7 +71,6 @@ def addMessage(chat_id,username_id):
 
         updatemessage=collection.update({ "_id":ObjectId(chat_id) },{"$push":{"messages":_text}})
         resp=jsonify("message added successfully to the chat") 
-        resp.status_code=200
 
         return resp
 

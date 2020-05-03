@@ -9,7 +9,7 @@
 
 
 
-Public API for a chat sentiment analysis => https://....herokuapp.com/
+Public API for a chat sentiment analysis => https://chat-sentiment-analysis-serv.herokuapp.com/
 
 
 

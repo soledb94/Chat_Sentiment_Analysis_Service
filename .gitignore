@@ -4,3 +4,6 @@ __pycache__
 bash
 syncDb.sh
 images
+INPUT
+nltk.txt
+
