@@ -30,12 +30,28 @@ def createUsername():
 #user recommendation
 
 
-@app.route("/user/<user_id>/recommend")
+@app.route("/user/<user_id>/<chat_id>/recommend")
 @errorHandler
-def getrecommendation(user_id):
+def getrecommendation(user_id,chat_id):
     query=list(collection.find({ "_id":ObjectId(user_id)},{"messages":1}))
     if len(query)==0:
         raise APIError("user doesnt exists")
+
+#Código a terminar:
+    else:
+        query2=collection.find({},{"messages":1,"_id":1})
+  
+        query2=[e for e in query2 if e]
+        m=[]
+        for e in query2:
+            m.append(e)
+            
+        print(len(m))
+
+        return dumps(m)
+
+
+    
 
 
 
