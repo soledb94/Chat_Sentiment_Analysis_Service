@@ -67,11 +67,17 @@ def getrecommendation(user_id):
         m = sparse_matrix.todense()
 
         doc_term_matrix = sparse_matrix.todense()
-        r=doc_term_matrix[1:4]
-        recommendations=pipe.transform(r)
-    
+        df = pd.DataFrame(doc_term_matrix, 
+                  columns=count_vectorizer.get_feature_names(), 
+                  index=m.keys())
 
-        return dumps(recommendations)
+
+        similarity_matrix = distance(df,df)
+        sim_df = pd.DataFrame(similarity_matrix, columns=docs.keys(), index=docs.keys())
+
+        similatirities=sim_df[1:4]
+
+        return dumps(similarities)
 
 
     
