@@ -73,7 +73,7 @@ def getrecommendation(user_id):
 
 
         similarity_matrix = distance(df,df)
-        sim_df = pd.DataFrame(similarity_matrix, columns=docs.keys(), index=docs.keys())
+        sim_df = pd.DataFrame(similarity_matrix, columns=m.keys(), index=m.keys())
 
         similatirities=sim_df[1:4]
 
