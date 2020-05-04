@@ -6,6 +6,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from src.config import *
 from bson.json_util import dumps
 import json
+import pandas as pd
 from src.helpers.errorHandler import *
 from bson.objectid import ObjectId
 from flask import request,jsonify
