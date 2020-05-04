@@ -75,7 +75,8 @@ def getrecommendation(user_id):
         similarity_matrix = distance(df,df)
         sim_df = pd.DataFrame(similarity_matrix, columns=m.keys(), index=m.keys())
 
-        similatirities=sim_df[1:4]
+        similarities=sim_df[1:4]
+        similarities=similarities.to_json(orient='records')
 
         return dumps(similarities)
 
