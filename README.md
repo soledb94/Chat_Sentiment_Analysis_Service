@@ -20,6 +20,7 @@ Public API for a chat sentiment analysis => https://chat-sentiment-analysis-serv
 
 | HTTP Method 	| URI path      	| Description                                    	| 
 |-------------	|---------------	|------------------------------------------------	|
+| GET         	| /               | Welcome to the api. See reference   |   
 | POST         	| /chat/create         	| Chat creation         	| 
 | GET         	| /chat/adduser/<chat_id>/<username_id> 	| Adding users to the chat
 | PATCH        	| /chat/addmessage/<chat_id>/<username_id>	| Adding message by user to the chat    |

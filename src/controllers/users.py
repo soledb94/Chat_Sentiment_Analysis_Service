@@ -6,6 +6,20 @@ import json
 from src.helpers.errorHandler import *
 from bson.objectid import ObjectId
 from flask import request,jsonify
+import scipy.spatial.distance as distance
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity as distance
+
+
+
+# Welcome to the API
+
+@app.route("/")
+
+def welcomeapi():
+    res="Welcome to the chat sentiment analysis API. See this link to know how it works: https://github.com/soledb94/Chat_Sentiment_Analysis_Service/blob/master/README.md"
+    return dumps(res)
+
 
 
 #user creation
@@ -30,25 +44,31 @@ def createUsername():
 #user recommendation
 
 
-@app.route("/user/<user_id>/<chat_id>/recommend")
+@app.route("/user/<user_id>/recommend")
 @errorHandler
-def getrecommendation(user_id,chat_id):
+def getrecommendation(user_id):
     query=list(collection.find({ "_id":ObjectId(user_id)},{"messages":1}))
     if len(query)==0:
         raise APIError("user doesnt exists")
 
-#Código a terminar:
     else:
         query2=collection.find({},{"messages":1,"_id":1})
   
         query2=[e for e in query2 if e]
-        m=[]
-        for e in query2:
-            m.append(e)
-            
-        print(len(m))
+        docs=[]
 
-        return dumps(m)
+        m={}
+        for e in docs:
+            m={":".join("{}:{}".format(k,v) for k,v in e.items())}
+        
+        count_vectorizer = CountVectorizer()
+        sparse_matrix = count_vectorizer.fit_transform(m)
+        m = sparse_matrix.todense()
+
+        doc_term_matrix = sparse_matrix.todense()
+        recommendations=doc_term_matrix[1:4]
+
+        return dumps(recommendations)
 
 
     
