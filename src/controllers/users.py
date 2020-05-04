@@ -9,6 +9,7 @@ from flask import request,jsonify
 import scipy.spatial.distance as distance
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity as distance
+from sklearn.pipeline import Pipeline
 
 
 
@@ -66,7 +67,9 @@ def getrecommendation(user_id):
         m = sparse_matrix.todense()
 
         doc_term_matrix = sparse_matrix.todense()
-        recommendations=doc_term_matrix[1:4]
+        r=doc_term_matrix[1:4]
+        recommendations=pipe.transform(r)
+    
 
         return dumps(recommendations)
 
